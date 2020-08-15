@@ -12,7 +12,7 @@ class Item:
         FILE = "file"
         SKIPCHECK = "file:skipcheck"
 
-    def __init__(self, title, subtitle, icon, arg=None,
+    def __init__(self, title, subtitle, icon=None, arg=None,
                  valid=True, match=None, autocomplete=None,
                  type=None, mods=None, text=None, quicklookurl=None):
         self.title = title
@@ -33,7 +33,8 @@ class Item:
         none_keys = [key for key in obj if obj[key] == None]
         for key in none_keys:
             del obj[key]
-        obj["icon"] = self.icon.value
+        if "icon" in obj:
+            obj["icon"] = self.icon.value
         if "type" in obj:
             obj["type"] = self.type.value
         if "mods" in obj:
